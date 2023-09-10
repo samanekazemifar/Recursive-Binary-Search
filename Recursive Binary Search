@@ -1,0 +1,22 @@
+class RecursiveBinarySearch:
+
+    @staticmethod
+    def search(mylist, target):
+        if not mylist:
+            return -1
+
+        def _binary_search(mylist, start, end, target):
+            if start > end:
+                return -1
+            mid = (start + end) // 2
+            if mylist[mid] == target:
+                return mid
+            elif target < mylist[mid]:
+                return _binary_search(mylist, start, mid - 1, target)
+            else:
+                return _binary_search(mylist, mid + 1, end, target)
+
+        if mylist != sorted(mylist):
+            return "not sorted"
+        
+        return _binary_search(mylist, 0, len(mylist) - 1, target)
